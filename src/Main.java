@@ -1,10 +1,9 @@
 import entities.*;
 import entities.exeptions.ItemException;
-import entities.exeptions.WrongTypeOfPerson;
 import objects.Baloon;
 import objects.Bush;
 public class Main {
-    public static void main(String[] args) throws WrongTypeOfPerson {
+    public static void main(String[] args) {
         Knowitall knowitall=new Knowitall("знайка");
         FirstSquad firstsquad=new FirstSquad("первому отряду");
         SecondSquad secondsquad=new SecondSquad("второму отряду");
