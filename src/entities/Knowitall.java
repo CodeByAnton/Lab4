@@ -1,14 +1,15 @@
 package entities;
-import exeption.WrongTypeOfPerson;
+import entities.exeptions.ItemException;
+import entities.exeptions.WrongTypeOfPerson;
 import objects.Baloon;
 import objects.Bush;
 
-import java.util.function.Consumer;
 
-public class Knowitall extends AbstractEntity implements Orderedable {
+public class Knowitall extends AbstractEntity  {
     public Knowitall(String name){
         super(name);
     }
+    private int[] countItems={0,0,0,0};
     public void tiePipe(Baloon baloon){
         System.out.println(this.getName()+" завязал верёвочкой резиновую трубку, чтобы из "+baloon.getName()+
                 " не выходил воздух");
@@ -22,33 +23,47 @@ public class Knowitall extends AbstractEntity implements Orderedable {
                 "чтобы "+baloon.getName()+" не " + "унесло ветром");
     }
     public void dividedPeople(AbstractEntity kids) {
-        try {
-            if (! (kids instanceof Kids))
-                throw new WrongTypeOfPerson();
-            else System.out.println(this.getName()+" поделил "+kids.getName()+" на два отряда");
+        if (kids instanceof Kids){
+            System.out.println(this.getName()+" поделил "+kids.getName()+" на два отряда");
         }
-        catch (WrongTypeOfPerson type){
-            System.out.println(type.describe());
-        }
+        else throw new WrongTypeOfPerson("You can't divide that type of person");
 
     }
 
 
 
-    @Override
-    public void order(AbstractEntity name, Item item){
+
+    public void order(AbstractEntity name, Item item) throws ItemException{
         switch (item){
+
             case COCOONS:
-                System.out.println(this.getName()+" велел "+name.getName()+" собрать шелковинчные коконы");
+                countItems[0]+=1;
+                if (countItems[0]>1)
+                    throw new ItemException("cocoons are already gathering");
+                else
+                    countItems[0]+=1;
+                    System.out.println(this.getName()+" велел "+name.getName()+" собрать шелковинчные коконы");
                 break;
             case NET:
-                System.out.println(this.getName()+" велел "+name.getName()+" собрать шелковинчные коконы");
+                countItems[1]+=1;
+                if (countItems[1]>1)
+                    throw new ItemException("net is already weaving");
+                else
+                    System.out.println(this.getName()+" велел "+name.getName()+" сплести огромную сетку");
                 break;
             case THREAD:
-                System.out.println(this.getName()+" велел "+name.getName()+" наделать шекловых нитей");
+                countItems[2]+=1;
+                if (countItems[2]>1)
+                    throw new ItemException("threads are already being made");
+                else
+                    System.out.println(this.getName()+" велел "+name.getName()+" наделать шекловых нитей");
                 break;
             case LARGEBASKET:
-                System.out.println(name.getName()+" "+this.getName()+" велел сделать большую корзину");
+                countItems[3]+=1;
+                if (countItems[3]>1)
+                    throw new ItemException("large basket is already being made");
+                else
+                    System.out.println(name.getName()+" "+this.getName()+" велел сделать большую корзину");
                 break;
         }
     }

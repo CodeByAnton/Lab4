@@ -7,6 +7,6 @@ public class SecondSquad extends AbstractEntity {
 
     @Override
     public void action() {
-        System.out.println(getName()+" выполнял работу");
+        System.out.println(this.getName()+" выполнял работу");
     }
 }

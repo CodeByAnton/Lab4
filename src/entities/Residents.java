@@ -14,12 +14,12 @@ public class Residents extends AbstractEntity implements Comeable, Watchable, Tr
     }
     @Override
     public void come(){
-        System.out.println(getName()+" приходили");
+        System.out.println(this.getName()+" приходили");
     }
 
     @Override
     public void watch(Baloon baloon, Bush bush) {
-        System.out.println(getName()+" смотрели на огромнейший "+baloon.getName()+", который был привязан к "+bush.getName());
+        System.out.println(this.getName()+" смотрели на огромнейший "+baloon.getName()+", который был привязан к "+bush.getName());
     }
 
     public class Hands{
@@ -30,6 +30,6 @@ public class Residents extends AbstractEntity implements Comeable, Watchable, Tr
 
     @Override
     public void trying(Baloon baloon) {
-        System.out.println("Некоторые "+getName()+" пытались приподнять "+baloon.getName());
+        System.out.println("некоторые "+this.getName()+" пытались приподнять "+baloon.getName());
     }
 }
